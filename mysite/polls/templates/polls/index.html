@@ -1,7 +1,13 @@
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
+        <!-- this is the updated url list configuration -->
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+
+
+      <!-- original  list syntax. changed to make it easier to code for multiple templates
         <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+        -->
     {% endfor %}
     </ul>
 {% else %}
