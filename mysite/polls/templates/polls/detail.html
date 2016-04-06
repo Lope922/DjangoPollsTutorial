@@ -1,0 +1,12 @@
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+
+<!-- just typing in {{ question }} will work to get the basics functioning
+
+NEXt is removing hardcoded URLS in templates  this allows for better functionality when creating bigger projects with many templates  -->
+
+
