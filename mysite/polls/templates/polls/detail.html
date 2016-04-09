@@ -1,14 +1,23 @@
 <h1>{{ question.question_text }}</h1>
-<ul>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+<!-- form portion of webage that allows inpunt  -->
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
 {% for choice in question.choice_set.all %}
-    <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
 
-<!--
-    <li>{{ choice.choice_text }}</li>
-    -->
+    <!-- sets the form input type to a radio button -->
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+
+    <!-- label for each radio button -->
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
 {% endfor %}
-</ul>
 
+
+<input type="submit" value="Vote" />
+</form>
 <!-- just typing in {{ question }} will work to get the basics functioning
 
 NEXt is removing hardcoded URLS in templates  this allows for better functionality when creating bigger projects with many templates  -->
